@@ -1,5 +1,5 @@
-部分代码参考了其它开源项目（如[](src/main/java/io/github/asankilp/dys/item/KurumiShovel.java)，除这些代码之外的所有代码（除[](src/main/resources)下的资源（图像，声音）都遵循WTFPL协议开源。  
-[](src/main/resources/assets/dys/textures/item/akaza_akari.png)的使用了[此插画](https://pixiv.net/artworks/91457348)。  
+部分代码参考了其它开源项目（如[KurumiShovel.java](src/main/java/io/github/asankilp/dys/item/KurumiShovel.java)，除这些代码之外的所有代码（除[src/main/resources](src/main/resources)下的资源（图像，声音）都遵循WTFPL协议开源。  
+[akaza_akari.png](src/main/resources/assets/dys/textures/item/akaza_akari.png)使用了[此插画](https://pixiv.net/artworks/91457348)。  
 
 #
 ```
