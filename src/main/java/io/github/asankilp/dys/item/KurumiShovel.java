@@ -32,7 +32,7 @@ public class KurumiShovel extends ShovelItem {
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target.getCreatureAttribute() == CreatureAttribute.UNDEAD) {
             attacker.world.playSound(null, attacker.getPosX(), attacker.getPosY(), attacker.getPosZ(), SoundEvents.ENTITY_ITEM_BREAK, attacker.getSoundCategory(), 1F, 0.5F);
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 3,4, true, true));
+            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 30,10, true, true));
 //            target.addPotionEffect(new EffectInstance(Effects.INSTANT_HEALTH, 1,4));
             if (attacker instanceof PlayerEntity) {
                 target.attackEntityFrom(DamageSource.causePlayerDamage((PlayerEntity) attacker), getDamage(stack) + 9);
