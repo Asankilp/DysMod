@@ -1,23 +1,22 @@
 package io.github.asankilp.dys.item;
 
 import io.github.asankilp.dys.sound.SoundReg;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class Yaju extends Item {
     public Yaju() {
         super(new Properties());
     }
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        if (worldIn.isRemote) {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundReg.yajuSound.get(), SoundCategory.AMBIENT, 10f, 1f);
+    public InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, InteractionHand handIn) {
+        if (levelIn.isClientSide) {
+            levelIn.playSound(playerIn, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundReg.yajuSound.get(), playerIn.getSoundSource(), 10F, 1F);
         }
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(levelIn, playerIn, handIn);
         }
 }
