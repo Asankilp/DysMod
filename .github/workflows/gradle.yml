@@ -7,11 +7,7 @@
 
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: [ "1.16" ]
-  pull_request:
-    branches: [ "1.16" ]
+on: [push, pull_request]
 
 permissions:
   contents: read
@@ -33,8 +29,14 @@ jobs:
       with:
         gradle-version: 4.10.3
         arguments: build
-    - name: Upload a Build Artifact
+    - name: Upload 1.16.4 Mod Jar
       uses: actions/upload-artifact@v3.1.0
       with:
           name: dys-1.16.4
           path: build/libs/dys-1.16.4-*.jar
+    - name: Upload 1.19.2 Mod Jar
+      uses: actions/upload-artifact@v3.1.0
+      with:
+          name: dys-1.19.2
+          path: build/libs/dys-1.19.2-*.jar
+          
