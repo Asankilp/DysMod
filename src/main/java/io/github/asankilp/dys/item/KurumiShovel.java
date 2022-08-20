@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.CombatTracker;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
@@ -18,7 +19,7 @@ import java.util.List;
 public class KurumiShovel extends ShovelItem {
 
     public KurumiShovel() {
-        super(DysTier.DEADIRON, 2, -3f, (new Item.Properties()).group(ItemGroup.TOOLS));
+        super(DysTier.DEADIRON, 3, -3f, (new Item.Properties()).group(ItemGroup.TOOLS));
     }
     /*
      * This method refer to the Botania Mod.
@@ -35,9 +36,10 @@ public class KurumiShovel extends ShovelItem {
             target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 30,10, true, true));
 //            target.addPotionEffect(new EffectInstance(Effects.INSTANT_HEALTH, 1,4));
             if (attacker instanceof PlayerEntity) {
-                target.attackEntityFrom(DamageSource.causePlayerDamage((PlayerEntity) attacker), getDamage(stack) + 9);
+
+                target.attackEntityFrom(DamageSource.causePlayerDamage((PlayerEntity) attacker), getAttackDamage() * 5);
             } else {
-                target.attackEntityFrom(DamageSource.causeMobDamage(attacker), getDamage(stack) + 9);
+                target.attackEntityFrom(DamageSource.causeMobDamage(attacker), getAttackDamage() * 5);
             }
 
         }
@@ -48,5 +50,6 @@ public class KurumiShovel extends ShovelItem {
         tooltip.add(new TranslationTextComponent("item.kurumi_shovel.tip1"));
         tooltip.add(new TranslationTextComponent("item.kurumi_shovel.tip2"));
     }
+
 
 }

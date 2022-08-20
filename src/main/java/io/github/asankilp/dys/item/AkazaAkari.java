@@ -21,9 +21,7 @@ public class AkazaAkari extends Item {
         ItemStack stack = playerIn.getHeldItem(handIn);
         playerIn.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 140, 4, true, false));
         playerIn.getCooldownTracker().setCooldown(this, 190);
-        if (worldIn.isRemote) {
-            worldIn.playSound(playerIn, playerIn.getPosition(), SoundReg.akariakarinSound.get(), SoundCategory.AMBIENT, 10f, 1f);
-        }
+        worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundReg.akariakarinSound.get(), SoundCategory.AMBIENT, 0.5f, 1f);
         if(!playerIn.abilities.isCreativeMode) {
             stack.shrink(1);
         }

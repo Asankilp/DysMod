@@ -24,9 +24,7 @@ public class GoldenRingo extends Item {
     }
     @Override
     public ItemStack onItemUseFinish(ItemStack itemIn, World worldIn, LivingEntity entityIn) {
-        if (worldIn.isRemote) {
-            worldIn.playSound((PlayerEntity) entityIn, entityIn.getPosition(), SoundReg.tokugawaShoutSound.get(), SoundCategory.AMBIENT, 10f, 1f);
-        }
+        worldIn.playSound((PlayerEntity) null, entityIn.getPosX(), entityIn.getPosY(), entityIn.getPosZ(), SoundReg.tokugawaShoutSound.get(), SoundCategory.AMBIENT, 0.5f, 1f);
         return super.onItemUseFinish(itemIn, worldIn, entityIn);
     }
 }
