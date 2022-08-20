@@ -1,6 +1,7 @@
 package io.github.asankilp.dys.item;
 
 import io.github.asankilp.dys.sound.SoundReg;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,9 +24,7 @@ public class GoldenRingo extends Item {
     }
     @Override
     public ItemStack finishUsingItem(ItemStack itemIn, Level levelIn, LivingEntity entityIn) {
-        if (levelIn.isClientSide) {
-            levelIn.playSound((Player) entityIn, entityIn.getX(), entityIn.getY(), entityIn.getZ(), SoundReg.tokugawaShoutSound.get(), entityIn.getSoundSource(), 10f, 1f);
-        }
+        levelIn.playSound((Player) null, entityIn.getX(), entityIn.getY(), entityIn.getZ(), SoundReg.tokugawaShoutSound.get(), SoundSource.AMBIENT, 0.5f, 1f);
         return super.finishUsingItem(itemIn, levelIn, entityIn);
     }
 }

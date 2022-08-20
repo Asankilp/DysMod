@@ -1,6 +1,7 @@
 package io.github.asankilp.dys.item;
 
 import io.github.asankilp.dys.sound.SoundReg;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,9 +21,7 @@ public class AkazaAkari extends Item {
         ItemStack stack = playerIn.getItemInHand(handIn);
         playerIn.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 140, 4, true, false));
         playerIn.getCooldowns().addCooldown(this, 190);
-        if (levelIn.isClientSide) {
-            levelIn.playSound(playerIn, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundReg.akariakarinSound.get(), playerIn.getSoundSource(), 10f, 1f);
-        }
+        levelIn.playSound((Player)null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundReg.akariakarinSound.get(), SoundSource.AMBIENT, 0.5f, 1f);
         if(!playerIn.getAbilities().instabuild) {
             stack.shrink(1);
         }

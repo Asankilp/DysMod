@@ -22,7 +22,7 @@ import java.util.List;
 public class KurumiShovel extends ShovelItem {
 
     public KurumiShovel() {
-        super(DysTier.DEADIRON, 2, -3f, (new Item.Properties()).tab(CreativeModeTab.TAB_TOOLS));
+        super(DysTier.DEADIRON, 3, -3f, (new Item.Properties()).tab(CreativeModeTab.TAB_TOOLS));
     }
     /*
      * This method refer to the Botania Mod.
@@ -39,9 +39,9 @@ public class KurumiShovel extends ShovelItem {
             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 10, true, true));
 //            target.addPotionEffect(new EffectInstance(Effects.INSTANT_HEALTH, 1,4));
             if (attacker instanceof Player) {
-                target.hurt(DamageSource.playerAttack((Player) attacker), getDamage(stack) + 9);
+                target.hurt(DamageSource.playerAttack((Player) attacker), getAttackDamage() * 5);
             } else {
-                target.hurt(DamageSource.mobAttack(attacker), getDamage(stack) + 9);
+                target.hurt(DamageSource.mobAttack(attacker), getAttackDamage() * 5);
             }
 
         }
