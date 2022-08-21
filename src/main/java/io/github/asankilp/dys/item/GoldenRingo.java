@@ -14,9 +14,11 @@ import net.minecraft.world.level.Level;
 
 public class GoldenRingo extends Item {
     private static final FoodProperties ringo = (new FoodProperties.Builder())
-            .saturationMod(10)
-            .nutrition(20)
+            .saturationMod(1.2F)
+            .nutrition(4)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 114, 514, true, false), 1)
+            .effect(() -> new MobEffectInstance(MobEffects.DARKNESS, 114, 514, true, false), 1)
+
             .build();
 
     public GoldenRingo() {

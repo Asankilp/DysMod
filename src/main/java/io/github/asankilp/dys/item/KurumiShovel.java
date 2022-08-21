@@ -16,7 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.List;
 
 public class KurumiShovel extends ShovelItem {
