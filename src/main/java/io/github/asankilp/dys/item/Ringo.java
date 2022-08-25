@@ -1,7 +1,6 @@
 package io.github.asankilp.dys.item;
 
 import io.github.asankilp.dys.sound.SoundReg;
-
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -17,7 +16,7 @@ public class Ringo extends Item {
     private static final FoodProperties ringo = (new FoodProperties.Builder())
             .saturationMod(1.2F)
             .nutrition(4)
-            .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 114, 514, true, false), 1)
+            .effect((new MobEffectInstance(MobEffects.CONFUSION, 114, 514, true, false)), 1)
             .build();
 
     public Ringo() {

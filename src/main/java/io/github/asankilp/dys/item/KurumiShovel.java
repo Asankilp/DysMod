@@ -1,11 +1,9 @@
 package io.github.asankilp.dys.item;
 
 
-import io.github.asankilp.dys.Dys;
-import net.minecraft.client.renderer.EffectInstance;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,7 +11,6 @@ import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.network.chat.Component;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -21,7 +18,7 @@ import java.util.List;
 public class KurumiShovel extends ShovelItem {
 
     public KurumiShovel() {
-        super(DysTier.DEADIRON, 3, -3f, (new Item.Properties()).tab(CreativeModeTab.TAB_TOOLS));
+        super(Tiers.IRON, 6, -3f, (new Item.Properties()).tab(CreativeModeTab.TAB_TOOLS));
     }
     /*
      * This method refer to the Botania Mod.

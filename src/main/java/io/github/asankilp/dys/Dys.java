@@ -1,4 +1,5 @@
 package io.github.asankilp.dys;
+import io.github.asankilp.dys.effect.EffectReg;
 import io.github.asankilp.dys.item.ItemReg;
 import io.github.asankilp.dys.sound.SoundReg;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,7 @@ public class Dys {
         // Register the Deferred Register to the mod event bus so items get registered
         ItemReg.ITEMS.register(modEventBus);
         SoundReg.SOUNDS.register(modEventBus);
+        EffectReg.EFFECTS.register(modEventBus);
     }
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
