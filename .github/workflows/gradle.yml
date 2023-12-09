@@ -33,5 +33,5 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: dys-1.20.2
-          path: build/libs/dys-1.19.2-*.jar
+          path: build/libs/dys-1.20.2-*.jar
 
