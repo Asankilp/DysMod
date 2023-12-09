@@ -1,15 +1,15 @@
 package io.github.asankilp.dys.item;
 
 import io.github.asankilp.dys.sound.SoundReg;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class AkazaAkari extends Item {
     public AkazaAkari() {
@@ -17,14 +17,14 @@ public class AkazaAkari extends Item {
 
     }
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack stack = playerIn.getHeldItem(handIn);
-        playerIn.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 140, 4, true, false));
-        playerIn.getCooldownTracker().setCooldown(this, 190);
-        worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundReg.akariakarinSound.get(), SoundCategory.AMBIENT, 0.5f, 1f);
-        if(!playerIn.abilities.isCreativeMode) {
+    public InteractionResultHolder<ItemStack> use(Level levelIn, Player playerIn, InteractionHand handIn) {
+        ItemStack stack = playerIn.getItemInHand(handIn);
+        playerIn.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 140, 4, true, false));
+        playerIn.getCooldowns().addCooldown(this, 190);
+        levelIn.playSound((Player)null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundReg.akariakarinSound.get(), SoundSource.AMBIENT, 0.5f, 1f);
+        if(!playerIn.getAbilities().instabuild) {
             stack.shrink(1);
         }
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.use(levelIn, playerIn, handIn);
     }
 }

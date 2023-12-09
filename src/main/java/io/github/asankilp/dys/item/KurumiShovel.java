@@ -1,25 +1,26 @@
 package io.github.asankilp.dys.item;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.CombatTracker;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class KurumiShovel extends ShovelItem {
 
     public KurumiShovel() {
-        super(DysTier.DEADIRON, 3, -3f, (new Item.Properties()).group(ItemGroup.TOOLS));
+        super(Tiers.IRON, 6, -3f, (new Item.Properties()));
     }
     /*
      * This method refer to the Botania Mod.
@@ -30,26 +31,24 @@ public class KurumiShovel extends ShovelItem {
      * Botania License: http://botaniamod.net/license.php
      */
     @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getCreatureAttribute() == CreatureAttribute.UNDEAD) {
-            attacker.world.playSound(null, attacker.getPosX(), attacker.getPosY(), attacker.getPosZ(), SoundEvents.ENTITY_ITEM_BREAK, attacker.getSoundCategory(), 1F, 0.5F);
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 30,10, true, true));
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (target.getMobType() == new MobType().UNDEAD) {
+            attacker.level().playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), SoundEvents.ITEM_BREAK, attacker.getSoundSource(), 1F, 0.5F);
+            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 10, true, true));
 //            target.addPotionEffect(new EffectInstance(Effects.INSTANT_HEALTH, 1,4));
-            if (attacker instanceof PlayerEntity) {
-
-                target.attackEntityFrom(DamageSource.causePlayerDamage((PlayerEntity) attacker), getAttackDamage() * 5);
+            if (attacker instanceof Player) {
+                target.hurt(new DamageSources(RegistryAccess.EMPTY).playerAttack((Player) attacker), 1145);
             } else {
-                target.attackEntityFrom(DamageSource.causeMobDamage(attacker), getAttackDamage() * 5);
+                target.hurt(new DamageSources(RegistryAccess.EMPTY).mobAttack(attacker), 1145);
             }
 
         }
-        return super.hitEntity(stack, target, attacker);
+        return super.hurtEnemy(stack, target, attacker);
     }
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new TranslationTextComponent("item.kurumi_shovel.tip1"));
-        tooltip.add(new TranslationTextComponent("item.kurumi_shovel.tip2"));
+    public void appendHoverText(ItemStack stack, @Nullable Level levelIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add(Component.translatable("item.kurumi_shovel.tip1"));
+        tooltip.add(Component.translatable("item.kurumi_shovel.tip2"));
     }
-
 
 }

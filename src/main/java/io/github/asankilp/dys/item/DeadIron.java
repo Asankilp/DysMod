@@ -1,10 +1,10 @@
 package io.github.asankilp.dys.item;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 
-public class DeadIron extends Item{
+public class DeadIron extends Item {
     public DeadIron() {
-        super(new Item.Properties().group(ItemGroup.MATERIALS));
+        super(new Item.Properties());
     }
 }
